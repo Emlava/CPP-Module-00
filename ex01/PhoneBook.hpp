@@ -7,12 +7,17 @@
 class PhoneBook
 {
 	public:
+		// Constructor
+		PhoneBook();
 		// Attribute
-		Contacts	contacts[8];
+		Contact		contacts[8];
 		// Methods
-		void		add_contact(void); // Ask the user for the contact information here
-		void		search_contact(void); // Check behavior in subject
-		void		exit(void); // Quit the program
+		void		add_contact(void);
+//		void		search_contact(void);
+		void		exit(void);
+	private:
+		// Attribute
+		int		size;
 };
 
 #endif

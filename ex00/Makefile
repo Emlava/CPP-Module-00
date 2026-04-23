@@ -7,7 +7,7 @@ SOURCE = megaphone.cpp
 
 all: $(NAME)
 
-$(NAME): $(SOURCE)
+$(NAME):
 	$(CPPC) $(FLAGS) $(SOURCE) -o $(NAME)
 
 clean:

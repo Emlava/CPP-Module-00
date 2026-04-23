@@ -6,14 +6,13 @@
 class Contact
 {
 	public:
-		// Constructor
-		Contact();
 		// Attributes
 		std::string	first_name;
 		std::string	last_name;
+		std::string	nickname;
 		std::string	phone_number;
 		// Method
-		void		set_darkest_secret(std::string secret);
+		void		set_darkest_secret(std::string darkest_secret);
 
 	private:
 		// Attribute
