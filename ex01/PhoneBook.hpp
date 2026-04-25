@@ -6,18 +6,17 @@
 
 class PhoneBook
 {
+	private:
+		// Attributes
+		Contact		contacts[8];
+		int		size;
 	public:
 		// Constructor
 		PhoneBook();
-		// Attribute
-		Contact		contacts[8];
 		// Methods
 		void		add_contact(void);
 //		void		search_contact(void);
 		void		exit(void);
-	private:
-		// Attribute
-		int		size;
 };
 
 #endif
