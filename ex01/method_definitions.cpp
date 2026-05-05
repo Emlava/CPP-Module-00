@@ -2,44 +2,89 @@
 #include "PhoneBook.hpp"
 
 // Contact method
-void	Contact::set_darkest_secret(std::string secret)
+void	Contact::set_field_value(std::string name, std::string value)
 {
-	darkest_secret = secret;
+	if (name == "first_name")
+		first_name = value;
+	else if (name == "last_name")
+		last_name = value;
+	else if (name == "nickname")
+		nickname = value;
+	else if (name == "phone_number")
+		phone_number = value;
+	else if (name == "darkest_secret")
+		darkest_secret = value;
 	return ;
 }
 
 // PhoneBook methods
 
-PhoneBook::PhoneBook(void)
-{
-	size = 0;
-}
+// Constructor
+PhoneBook::PhoneBook(void) { size = 0; }
 
-void	PhoneBook::add_contact(void)
+int	PhoneBook::add_contact(void)
 {
 	int		i;
-	std::string	secret;
+	std::string	value;
 
 	if (size < 8)
 		size++;
 	i = size - 1;
 	std::cout << "\nPlease enter all the required information." << std::endl;
-	std::cout << "First name: ";
-	while (contacts[i].first_name.empty())
-		std::cin >> contacts[i].first_name; // LEFT OFF HERE: replace cin for getline()
-	std::cout << "Last name: ";
-	while (contacts[i].last_name.empty())
-		std::cin >> contacts[i].last_name;
-	std::cout << "Nickname: ";
-	while (contacts[i].nickname.empty())
-		std::cin >> contacts[i].nickname;
-	std::cout << "Phone number: ";
-	while (contacts[i].phone_number.empty())
-		std::cin >> contacts[i].phone_number;
-	std::cout << "Darkest secret: ";
-	while (secret.empty())
-		std::cin >> secret;
-	std::cout << std::endl;
-	contacts[i].set_darkest_secret(secret);
-	return ;
+	while (value.empty())
+	{
+		std::cout << "First name: ";
+		if (!std::getline(std::cin, value))
+		{
+			std::cout << std::endl;
+			return (0);
+		}
+	}
+	contacts[i].set_field_value("first_name", value);
+	value.clear();
+	while (value.empty())
+	{
+		std::cout << "Last name: ";
+		if (!std::getline(std::cin, value))
+		{
+			std::cout << std::endl;
+			return (0);
+		}
+	}
+	contacts[i].set_field_value("last_name", value);
+	value.clear();
+	while (value.empty())
+	{
+		std::cout << "Nickname: ";
+		if (!std::getline(std::cin, value))
+		{
+			std::cout << std::endl;
+			return (0);
+		}
+	}
+	contacts[i].set_field_value("nickname", value);
+	value.clear();
+	while (value.empty())
+	{
+		std::cout << "Phone number: ";
+		if (!std::getline(std::cin, value))
+		{
+			std::cout << std::endl;
+			return (0);
+		}
+	}
+	contacts[i].set_field_value("phone_number", value);
+	value.clear();
+	while (value.empty())
+	{
+		std::cout << "Darkest secret: ";
+		if (!std::getline(std::cin, value))
+		{
+			std::cout << std::endl;
+			return (0);
+		}
+	}
+	contacts[i].set_field_value("darkest_secret", value);
+	value.clear();
+	return (1);
 }

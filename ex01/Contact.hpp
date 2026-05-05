@@ -14,7 +14,7 @@ class Contact
 		std::string	darkest_secret;
 	public:
 		// Methods
-		void		set_field_name(std::string field_name, std::string value);
+		void		set_field_value(std::string name, std::string value);
 		std::string	get_field_value(std::string field_name);
 };
 
