@@ -24,8 +24,8 @@ int	main(void)
 			if (!phonebook.add_contact())
 				return (1);
 		}
-/*		else if (command == "SEARCH")
-			phonebook.search_contact(); */
+		else if (command == "SEARCH")
+			phonebook.search_contact();
 		else if (command == "EXIT")
 			return (0);
 		command.clear();

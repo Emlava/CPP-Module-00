@@ -1,7 +1,7 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
-// Contact method
+// Contact methods
 void	Contact::set_field_value(std::string name, std::string value)
 {
 	if (name == "first_name")
@@ -15,6 +15,21 @@ void	Contact::set_field_value(std::string name, std::string value)
 	else if (name == "darkest_secret")
 		darkest_secret = value;
 	return ;
+}
+
+std::string	Contact::get_field_value(std::string field_name)
+{
+	if (field_name == "first_name")
+		return (first_name);
+	else if (field_name == "last_name")
+		return (last_name);
+	else if (field_name == "nickname")
+		return (nickname);
+	else if (field_name == "phone_number")
+		return (phone_number);
+	else if (field_name == "darkest_secret")
+		return (darkest_secret);
+	return ("");
 }
 
 // PhoneBook methods
@@ -87,4 +102,23 @@ int	PhoneBook::add_contact(void)
 	contacts[i].set_field_value("darkest_secret", value);
 	value.clear();
 	return (1);
+}
+
+// Helper
+// static void	display_field()
+
+int	PhoneBook::search_contact(void)
+{
+	if (size == 0)
+	{
+		std::cout << "There are no contacts saved yet.\n" << std::endl;
+		return (1);
+	}
+
+	int	i = 0;
+
+	while (i < size)
+	{
+		cout << '|'; // LEFT OFF HERE: calculate if truncation is needed with string.size
+	}
 }
