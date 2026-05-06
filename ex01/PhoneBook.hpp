@@ -3,6 +3,7 @@
 
 # include <string>
 # include <iostream>
+# include <iomanip>
 
 class PhoneBook
 {
@@ -15,6 +16,8 @@ class PhoneBook
 		PhoneBook();
 		// Methods
 		int		add_contact(void);
+		// search_contact() helper
+		void		display_formatted_fields(int index, Contact contact);
 		int		search_contact(void);
 		void		exit(void);
 };

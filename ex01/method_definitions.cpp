@@ -32,6 +32,7 @@ std::string	Contact::get_field_value(std::string field_name)
 	return ("");
 }
 
+
 // PhoneBook methods
 
 // Constructor
@@ -104,8 +105,38 @@ int	PhoneBook::add_contact(void)
 	return (1);
 }
 
-// Helper
-// static void	display_field()
+void	display_formatted_fields(int index, Contact contact)
+{
+	std::string	curr_field;
+
+	std::cout << std::right;
+	std::cout << '|' << std::setw(10) << index << '|' << std::endl;
+	curr_field = contact.get_field_value("first_name");
+	if (curr_field.size() > 10)
+	{
+		curr_field.resize(10);
+		curr_field[9] = '.';
+	}
+	std::cout <<  '|' << std::setw(10) << curr_field << '|' << std::endl;
+
+	curr_field = contact.get_field_value("last_name");
+	if (curr_field.size() > 10)
+	{
+		curr_field.resize(10);
+		curr_field[9] = '.';
+	}
+	std::cout <<  '|' << std::setw(10) << curr_field << '|' << std::endl;
+
+	curr_field = contact.get_field_value("nickname");
+	if (curr_field.size() > 10)
+	{
+		curr_field.resize(10);
+		curr_field[9] = '.';
+	}
+	std::cout <<  '|' << std::setw(10) << curr_field << '|' << std::endl;
+	std::cout << std::left;
+	return ;
+}
 
 int	PhoneBook::search_contact(void)
 {
@@ -115,10 +146,14 @@ int	PhoneBook::search_contact(void)
 		return (1);
 	}
 
-	int	i = 0;
+	int	i = 0;	
 
 	while (i < size)
 	{
-		cout << '|'; // LEFT OFF HERE: calculate if truncation is needed with string.size
+		display_formatted_fields(i, contacts[i]);
+		i++;
 	}
+	// LEFT OFF HERE
+	// Prompt user to select an index
+
 }
