@@ -1,5 +1,26 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
+#include "cctype"
+
+void	remove_whitespace(std::string &command)
+{
+	size_t	i = 0;
+	size_t	command_len;
+
+	while (std::isspace(command[i]))
+		i++;
+	if (i)
+		command.erase(0, i);
+	command_len = command.length();
+	if (!command_len)
+		return ;
+	i = command_len - 1;
+	while (std::isspace(command[i]))
+		i--;
+	if (++i != command_len)
+		command.erase(i, command_len - i);
+	return ;
+}
 
 int	main(void)
 {
@@ -19,6 +40,7 @@ int	main(void)
 				return (0);
 			}
 		}
+		remove_whitespace(command);
 		if (command == "ADD")
 		{
 			if (!phonebook.add_contact())

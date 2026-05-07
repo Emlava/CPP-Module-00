@@ -1,39 +1,5 @@
-#include "Contact.hpp"
-#include "PhoneBook.hpp"
-
-// Contact methods
-void	Contact::set_field_value(std::string name, std::string value)
-{
-	if (name == "first_name")
-		first_name = value;
-	else if (name == "last_name")
-		last_name = value;
-	else if (name == "nickname")
-		nickname = value;
-	else if (name == "phone_number")
-		phone_number = value;
-	else if (name == "darkest_secret")
-		darkest_secret = value;
-	return ;
-}
-
-std::string	Contact::get_field_value(std::string field_name)
-{
-	if (field_name == "first_name")
-		return (first_name);
-	else if (field_name == "last_name")
-		return (last_name);
-	else if (field_name == "nickname")
-		return (nickname);
-	else if (field_name == "phone_number")
-		return (phone_number);
-	else if (field_name == "darkest_secret")
-		return (darkest_secret);
-	return ("");
-}
-
-
-// PhoneBook methods
+#include "../Contact.hpp"
+#include "../PhoneBook.hpp"
 
 // Constructor
 PhoneBook::PhoneBook(void) { size = 0; }
@@ -105,19 +71,20 @@ int	PhoneBook::add_contact(void)
 	return (1);
 }
 
-void	display_formatted_fields(int index, Contact contact)
+// Helper
+static void	display_formatted_fields(int index, Contact contact)
 {
 	std::string	curr_field;
 
 	std::cout << std::right;
-	std::cout << '|' << std::setw(10) << index << '|' << std::endl;
+	std::cout << '|' << std::setw(10) << index;
 	curr_field = contact.get_field_value("first_name");
 	if (curr_field.size() > 10)
 	{
 		curr_field.resize(10);
 		curr_field[9] = '.';
 	}
-	std::cout <<  '|' << std::setw(10) << curr_field << '|' << std::endl;
+	std::cout <<  '|' << std::setw(10) << curr_field;
 
 	curr_field = contact.get_field_value("last_name");
 	if (curr_field.size() > 10)
@@ -125,7 +92,7 @@ void	display_formatted_fields(int index, Contact contact)
 		curr_field.resize(10);
 		curr_field[9] = '.';
 	}
-	std::cout <<  '|' << std::setw(10) << curr_field << '|' << std::endl;
+	std::cout <<  '|' << std::setw(10) << curr_field;
 
 	curr_field = contact.get_field_value("nickname");
 	if (curr_field.size() > 10)
@@ -138,22 +105,46 @@ void	display_formatted_fields(int index, Contact contact)
 	return ;
 }
 
-int	PhoneBook::search_contact(void)
+// Helper
+static void	display_all_contact_info(Contact contact)
+{
+	std::cout << "First name: " << contact.get_field_value("first_name") << std::endl;
+	std::cout << "Last name: " << contact.get_field_value("last_name") << std::endl;
+	std::cout << "Nickname: " << contact.get_field_value("nickname") << std::endl;
+	std::cout << "Phone number: " << contact.get_field_value("phone_number") << std::endl;
+	std::cout << "Darkest secret: " << contact.get_field_value("darkest_secret") << std::endl;
+	return ;
+}
+
+void	PhoneBook::search_contact(void)
 {
 	if (size == 0)
 	{
-		std::cout << "There are no contacts saved yet.\n" << std::endl;
-		return (1);
+		std::cout << "There are no contacts saved yet." << std::endl;
+		return ;
 	}
 
 	int	i = 0;	
 
 	while (i < size)
 	{
-		display_formatted_fields(i, contacts[i]);
+		display_formatted_fields(i + 1, contacts[i]);
 		i++;
 	}
-	// LEFT OFF HERE
-	// Prompt user to select an index
-
+	std::cout << "\nSelect the index of one of the contacts shown above to see more information: ";
+	if (!(std::cin >> i))
+	{
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "Invalid index." << std::endl;
+		return ;
+	}
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	if (i < 1 || i > size)
+	{
+		std::cout << "Index out of range." << std::endl;
+		return ;
+	}
+	display_all_contact_info(contacts[i - 1]);
+	return ;
 }

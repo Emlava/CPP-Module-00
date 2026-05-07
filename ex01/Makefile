@@ -1,7 +1,7 @@
 NAME = PhoneBook
 CPPC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-OBJECTS = main.o method_definitions.o
+OBJECTS = main.o method_definitions/PhoneBook_methods.o method_definitions/Contact_methods.o
 
 .PHONY: all clean fclean re
 
