@@ -18,7 +18,6 @@ class PhoneBook
 		// Methods
 		int		add_contact(void);
 		void		search_contact(void);
-		void		exit(void);
 };
 
 #endif

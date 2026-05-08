@@ -1,4 +1,4 @@
-#include "../Contact.hpp"
+#include "methods.hpp"
 
 void	Contact::set_field_value(std::string name, std::string value)
 {
