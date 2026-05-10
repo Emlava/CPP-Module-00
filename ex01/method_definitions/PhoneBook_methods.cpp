@@ -1,22 +1,27 @@
 #include "methods.hpp"
 
 // Constructor
-PhoneBook::PhoneBook(void) { size = 0; }
+PhoneBook::PhoneBook(void) { size = 0; curr_contact = 0; }
 
 int	PhoneBook::add_contact(void)
 {
-	int		i;
 	std::string	value;
 
 	if (size < 8)
+	{
 		size++;
-	i = size - 1;
+		curr_contact = size - 1;
+	}
 	std::cout << "\nPlease enter all the required information." << std::endl;
-	contacts[i].set_field_value("first_name", ask_for_value("First name: "));
-	contacts[i].set_field_value("last_name", ask_for_value("Last name: "));
-	contacts[i].set_field_value("nickname", ask_for_value("Nickname: "));
-	contacts[i].set_field_value("phone_number", ask_for_value("Phone number: "));
-	contacts[i].set_field_value("darkest_secret", ask_for_value("Darkest secret: "));
+	contacts[curr_contact].set_field_value("first_name", ask_for_value("First name: "));
+	contacts[curr_contact].set_field_value("last_name", ask_for_value("Last name: "));
+	contacts[curr_contact].set_field_value("nickname", ask_for_value("Nickname: "));
+	contacts[curr_contact].set_field_value("phone_number", ask_for_value("Phone number: "));
+	contacts[curr_contact].set_field_value("darkest_secret", ask_for_value("Darkest secret: "));
+	if (curr_contact == 7)
+		curr_contact = 0;
+	else
+		curr_contact++;
 	return (1);
 }
 

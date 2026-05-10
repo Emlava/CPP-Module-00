@@ -12,6 +12,7 @@ class PhoneBook
 		// Attributes
 		Contact		contacts[8];
 		int		size;
+		int		curr_contact;
 	public:
 		// Constructor
 		PhoneBook();
